@@ -1,0 +1,840 @@
+@property --dot {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: rgba(186, 230, 253, 0.14);
+}
+
+:root {
+  --sky-50: #F0F9FF;
+  --sky-100: #E0F2FE;
+  --sky-200: #BAE6FD;
+  --sky-300: #7DD3FC;
+  --sky-400: #38BDF8;
+  --sky-500: #0EA5E9;
+  --sky-600: #0284C7;
+  --sky-700: #0369A1;
+
+  --slate-50: #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1E293B;
+  --slate-900: #0F172A;
+
+  --night-900: #081125;
+  --night-800: #0c1a38;
+
+  /* lamp position (used by the background gradients) */
+  --lx: 34%;
+  --ly: 46%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* الهلفية واللمبة مقفوله */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  color: var(--slate-900);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse 60% 55% at var(--lx) var(--ly), rgba(29, 56, 101, 0.9) 0%, rgba(29, 56, 101, 0) 70%),
+    linear-gradient(180deg, var(--night-900) 0%, var(--night-800) 100%);
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Daylight layer, fades in when the lamp is ON */
+body::before {
+  background:
+    radial-gradient(ellipse 55% 60% at var(--lx) var(--ly), #FFFFFF 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(ellipse 100% 90% at var(--lx) var(--ly), #F4FAFF 0%, #E3F3FE 60%, #CFE9FB 100%);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+body:has(.lamp-checkbox:checked)::before {
+  opacity: 1;
+}
+
+/* Graph-paper dots, clear around the lamp */
+body::after {
+  --dot: rgba(186, 230, 253, 0.14);
+  background-image: radial-gradient(circle, var(--dot) 1.4px, transparent 1.8px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 60% at var(--lx) var(--ly), transparent 0%, #000 100%);
+  mask-image: radial-gradient(ellipse 65% 60% at var(--lx) var(--ly), transparent 0%, #000 100%);
+  transition: --dot 0.6s ease;
+}
+
+body:has(.lamp-checkbox:checked)::after {
+  --dot: rgba(2, 132, 199, 0.17);
+}
+
+/* Hidden Checkboxes & Radios for Pure CSS State */
+.lamp-checkbox,
+.role-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.top-bar {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, var(--sky-400), var(--sky-600));
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px -4px rgba(14, 165, 233, 0.35);
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #F1F5F9;
+  letter-spacing: -0.02em;
+  transition: color 0.5s ease;
+}
+
+.brand-name .accent {
+  color: var(--sky-300);
+  transition: color 0.5s ease;
+}
+
+.lamp-checkbox:checked ~ .top-bar .brand-name {
+  color: var(--slate-900);
+}
+
+.lamp-checkbox:checked ~ .top-bar .brand-name .accent {
+  color: var(--sky-500);
+}
+
+/*  Back to Home  */
+.back-link {
+  --pill-bg: rgba(255, 255, 255, 0.06);
+  --pill-border: rgba(186, 230, 253, 0.22);
+  --pill-text: var(--sky-100);
+  --icon-bg: rgba(56, 189, 248, 0.16);
+  --icon-fg: var(--sky-200);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.9rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: var(--pill-text);
+  background-color: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: color 0.4s ease, background-color 0.4s ease, border-color 0.3s ease,
+              box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.lamp-checkbox:checked ~ .top-bar .back-link {
+  --pill-bg: rgba(255, 255, 255, 0.88);
+  --pill-border: var(--slate-200);
+  --pill-text: var(--slate-600);
+  --icon-bg: var(--sky-100);
+  --icon-fg: var(--sky-600);
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  --pill-text: #FFFFFF;
+  border-color: var(--sky-400);
+  box-shadow: 0 10px 24px -10px rgba(14, 165, 233, 0.6);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.lamp-checkbox:checked ~ .top-bar .back-link:hover,
+.lamp-checkbox:checked ~ .top-bar .back-link:focus-visible {
+  --pill-text: var(--sky-700);
+  background-color: #FFFFFF;
+}
+
+.back-arrow {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-link:hover .back-arrow,
+.back-link:focus-visible .back-arrow {
+  transform: translateX(-4px);
+}
+
+.home-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--icon-bg);
+  color: var(--icon-fg);
+  transition: background 0.35s ease, color 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.home-icon svg {
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+}
+
+.home-icon .door {
+  fill: currentColor;
+  stroke: none;
+  transform-box: fill-box;
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.3, 1.25, 0.4, 1);
+}
+
+.home-icon .room {
+  fill: #FDE68A;
+  stroke: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 2px #FDE68A);
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.back-link:hover .home-icon,
+.back-link:focus-visible .home-icon {
+  background: linear-gradient(135deg, var(--sky-400), var(--sky-600));
+  color: #FFFFFF;
+  transform: scale(1.08);
+}
+
+.back-link:hover .door,
+.back-link:focus-visible .door {
+  transform: scaleX(0.14) skewY(-14deg);
+}
+
+.back-link:hover .room,
+.back-link:focus-visible .room {
+  opacity: 1;
+}
+
+.stage {
+  flex: 1;
+  width: 100%;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.lamp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  z-index: 5;
+  position: relative;
+}
+
+.lamp-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  width: 380px;
+  height: 44px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(125, 211, 252, 0.6) 0%, rgba(125, 211, 252, 0) 70%);
+  filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.lamp-container {
+  position: relative;
+  width: 240px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.lamp-container:hover {
+  transform: translateY(-3px);
+}
+
+/* Top cap */
+.lamp-shade::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 11px;
+  border-radius: 999px 999px 4px 4px;
+  background: linear-gradient(180deg, #5b72a0 0%, #2d4063 100%);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  transition: all 0.45s ease;
+}
+
+/* Bulb rim under the shade */
+.lamp-shade::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 10px;
+  border-radius: 0 0 20px 20px;
+  background: #2d4063;
+  border: 1px solid #51668f;
+  transition: all 0.45s ease;
+}
+
+/* Dome shade (dark metal while OFF) */
+.lamp-shade {
+  width: 184px;
+  height: 92px;
+  margin-top: 10px;
+  background: linear-gradient(160deg, #465c84 0%, #2d4063 55%, #1b2a47 100%);
+  border-radius: 96px 96px 22px 22px;
+  position: relative;
+  z-index: 4;
+  border: 1px solid rgba(186, 230, 253, 0.18);
+  box-shadow:
+    inset 0 8px 14px rgba(186, 230, 253, 0.14),
+    inset 0 -10px 18px rgba(8, 17, 37, 0.45),
+    0 10px 24px -8px rgba(0, 0, 0, 0.5);
+  transition: all 0.45s ease;
+}
+
+.lamp-stand {
+  width: 10px;
+  height: 150px;
+  background: linear-gradient(90deg, #1c2a47 0%, #5b72a0 45%, #1c2a47 100%);
+  border-radius: 4px;
+  position: relative;
+  z-index: 3;
+  transition: background 0.45s ease;
+}
+
+.lamp-base {
+  width: 112px;
+  height: 16px;
+  background: linear-gradient(180deg, #465c84 0%, #1a2744 100%);
+  border-radius: 999px;
+  position: relative;
+  z-index: 3;
+  box-shadow:
+    inset 0 2px 4px rgba(186, 230, 253, 0.18),
+    0 12px 22px -6px rgba(0, 0, 0, 0.55);
+  transition: all 0.45s ease;
+}
+
+/* Pull cord */
+.pull-cord {
+  position: absolute;
+  top: 96px;
+  right: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lamp-container:hover .pull-cord {
+  transform: translateY(6px);
+}
+
+.lamp-container:active .pull-cord {
+  transform: translateY(16px);
+}
+
+.cord-line {
+  width: 2px;
+  height: 64px;
+  background: linear-gradient(180deg, #5b72a0, #3b5079);
+  transition: height 0.25s ease, background 0.35s ease;
+}
+
+.cord-knob {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38BDF8, #0284C7);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.4);
+  transition: transform 0.25s ease, background 0.35s ease;
+}
+
+/* The knob pulses until the lamp is on */
+@keyframes knobPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.65), 0 4px 10px rgba(14, 165, 233, 0.4);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgba(56, 189, 248, 0), 0 4px 10px rgba(14, 165, 233, 0.4);
+  }
+}
+
+.lamp-checkbox:not(:checked) ~ .stage .cord-knob {
+  animation: knobPulse 2.4s ease-out infinite;
+}
+
+.light-cone {
+  position: absolute;
+  top: 72px;
+  width: 340px;
+  height: 290px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(56, 189, 248, 0.38) 0%,
+    rgba(186, 230, 253, 0.18) 45%,
+    rgba(240, 249, 255, 0) 75%
+  );
+  clip-path: polygon(26% 0%, 74% 0%, 100% 100%, 0% 100%);
+  opacity: 0;
+  transform: scaleY(0.85);
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lamp-hint {
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sky-200);
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(186, 230, 253, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.hint-on {
+  display: none;
+}
+
+/* Keyboard access: Tab to the lamp, press Space */
+.lamp-checkbox:focus-visible ~ .stage .lamp-container {
+  outline: 2px solid var(--sky-300);
+  outline-offset: 8px;
+  border-radius: 1.25rem;
+}
+
+/*  LOGIN CARD  */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--sky-200);
+  border-radius: 1.5rem;
+  padding: 2.15rem;
+  box-shadow: 0 20px 45px -15px rgba(14, 165, 233, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(22px) scale(0.96);
+  pointer-events: none;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.5s ease;
+}
+
+.card-header {
+  margin-bottom: 1.35rem;
+}
+
+.portal-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sky-700);
+  background-color: var(--sky-100);
+  border: 1px solid var(--sky-200);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+}
+
+.card-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  letter-spacing: -0.02em;
+}
+
+.card-header p {
+  font-size: 0.85rem;
+  color: var(--slate-500);
+  margin-top: 0.3rem;
+  line-height: 1.5;
+}
+
+/*  ROLE SWITCHER (STUDENT VS ADMIN)  */
+.role-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  background-color: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  border-radius: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.role-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.65rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--slate-600);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s ease;
+}
+
+.role-tab:hover {
+  color: var(--slate-900);
+}
+
+#role-student:checked ~ .role-switcher .tab-student {
+  background-color: #FFFFFF;
+  color: var(--sky-600);
+  box-shadow: 0 3px 10px -2px rgba(14, 165, 233, 0.2);
+  border: 1px solid var(--sky-200);
+}
+
+#role-admin:checked ~ .role-switcher .tab-admin {
+  background-color: var(--slate-900);
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px -2px rgba(15, 23, 42, 0.25);
+}
+
+.form-student,
+.form-admin {
+  display: none;
+}
+
+#role-student:checked ~ .form-student {
+  display: flex;
+}
+
+#role-admin:checked ~ .form-admin {
+  display: flex;
+}
+
+/*  FORM ELEMENTS  */
+.login-form {
+  flex-direction: column;
+  gap: 1.1rem;
+  animation: fadeSlideIn 0.3s ease;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate-700);
+  transition: color 0.25s ease;
+}
+
+.form-group:hover label {
+  color: var(--sky-700);
+}
+
+.forgot-link {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--sky-600);
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--slate-900);
+  background-color: var(--slate-50);
+  border: 1.5px solid var(--slate-200);
+  border-radius: 0.85rem;
+  outline: none;
+  transition: border-color 0.25s ease, background-color 0.25s ease,
+              box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--slate-400);
+}
+
+/* Hover on the input fields */
+.form-group input:hover:not(:focus) {
+  background-color: #FFFFFF;
+  border-color: var(--sky-300);
+  box-shadow: 0 8px 20px -10px rgba(14, 165, 233, 0.45);
+  transform: translateY(-2px);
+}
+
+.form-group input:hover:not(:focus)::placeholder {
+  color: var(--slate-500);
+}
+
+.form-group input:focus {
+  background-color: #FFFFFF;
+  border-color: var(--sky-500);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14);
+  transform: translateY(-2px);
+}
+
+.btn-signin {
+  margin-top: 0.35rem;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -8px rgba(14, 165, 233, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-signin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -8px rgba(14, 165, 233, 0.65);
+}
+
+.btn-admin {
+  background: linear-gradient(135deg, var(--slate-800), var(--slate-900));
+  box-shadow: 0 10px 24px -8px rgba(15, 23, 42, 0.45);
+}
+
+.btn-admin:hover {
+  box-shadow: 0 14px 28px -8px rgba(15, 23, 42, 0.55);
+}
+
+.card-footer {
+  margin-top: 1.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--slate-100);
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--slate-500);
+}
+
+.card-footer a {
+  color: var(--sky-600);
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.card-footer a:hover {
+  text-decoration: underline;
+}
+
+/*  LAMP ON STATE (:checked)  */
+.lamp-checkbox:checked ~ .stage .lamp-shade {
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--sky-100) 100%);
+  box-shadow:
+    0 0 35px rgba(56, 189, 248, 0.65),
+    0 12px 40px rgba(14, 165, 233, 0.35),
+    inset 0 -8px 16px rgba(186, 230, 253, 0.85);
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-shade::before {
+  background: linear-gradient(180deg, var(--sky-300), var(--sky-500));
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-shade::after {
+  background: #FFFFFF;
+  border-color: var(--sky-200);
+  box-shadow: 0 8px 20px 2px rgba(56, 189, 248, 0.75);
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-stand {
+  background: linear-gradient(90deg, var(--sky-300), #FFFFFF, var(--sky-300));
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-base {
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--sky-200) 100%);
+  box-shadow: 0 8px 22px -4px rgba(14, 165, 233, 0.35);
+}
+
+.lamp-checkbox:checked ~ .stage .cord-line {
+  height: 72px;
+  background: var(--sky-500);
+}
+
+.lamp-checkbox:checked ~ .stage .cord-knob {
+  background-color: var(--sky-600);
+  transform: scale(1.1);
+}
+
+.lamp-checkbox:checked ~ .stage .light-cone {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-wrapper::before {
+  opacity: 1;
+}
+
+.lamp-checkbox:checked ~ .stage .hint-off {
+  display: none;
+}
+
+.lamp-checkbox:checked ~ .stage .hint-on {
+  display: inline;
+  color: var(--sky-700);
+}
+
+.lamp-checkbox:checked ~ .stage .lamp-hint {
+  background-color: var(--sky-50);
+  border-color: var(--sky-200);
+  color: var(--sky-700);
+}
+
+/* Reveal the login card */
+.lamp-checkbox:checked ~ .stage .login-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/*  RESPONSIVE  */
+@media (max-width: 820px) {
+  :root {
+    --lx: 50%;
+    --ly: 26%;
+  }
+
+  .stage {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .lamp-container {
+    height: 245px;
+  }
+
+  .lamp-stand {
+    height: 115px;
+  }
+
+  .pull-cord {
+    top: 84px;
+  }
+
+  .lamp-wrapper::before {
+    top: 215px;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+/* @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms ;
+    animation-iteration-count: 1 ;
+    transition-duration: 0.01ms ;
+  }
+} */

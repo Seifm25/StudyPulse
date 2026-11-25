@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — StudyPulse Academic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="lamp-switch" class="lamp-checkbox" aria-label="Toggle Study Lamp" />
+
+  <header class="top-bar">
+    <!-- السهم اللي جمب الهوم -->
+    <a href="index.html" class="back-link">
+  <svg class="back-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="19" y1="12" x2="5" y2="12" />
+    <polyline points="12 19 5 12 12 5" />
+  </svg>
+  Back to Home
+  <!-- البيت ذات نفسه  -->
+  <span class="home-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2.8 11.4 12 3.6l9.2 7.8" />
+      <path d="M5.2 9.8v10.6h13.6V9.8" />
+      <rect class="room" x="9.4" y="12.6" width="5.2" height="7.8" />
+      <rect class="door" x="9.4" y="12.6" width="5.2" height="7.8" />
+    </svg>
+  </span>
+</a>
+  </header>
+
+  <main class="stage">
+    <div class="lamp-wrapper">
+      
+      <!-- Clickable Lamp & Pull Cord -->
+      <label for="lamp-switch" class="lamp-container" title="Click the cord to turn the lamp on/off">
+        <div class="light-cone"></div>
+        <!-- الدايرة اللي فوق -->
+        <div class="lamp-shade"></div>
+        <!-- دراع اللمبة -->
+        <div class="lamp-stand"></div>
+        <!-- قاعدة اللمبه -->
+        <div class="lamp-base"></div>
+
+        <div class="pull-cord">
+            <!-- حبل اللمبة -->
+          <span class="cord-line"></span>
+          <!-- كورة اللمبه اللي منورة -->
+          <span class="cord-knob"></span>
+        </div>
+      </label>
+
+      <p class="lamp-hint">
+        <span class="hint-off">Click the lamp cord to illuminate &amp; sign in 💡</span>
+        <span class="hint-on">Click the cord again to turn off the light</span>
+      </p>
+    </div>
+
+    <!-- Login Card (Reveals smoothly when lamp is ON) -->
+    <section class="login-card" aria-label="Student & Admin Login Form">
+      
+      <!-- Hidden Radio Inputs for Pure CSS Role Switcher -->
+      <input type="radio" name="user-role" id="role-student" class="role-radio" checked />
+      <input type="radio" name="user-role" id="role-admin" class="role-radio" />
+
+      <div class="card-header">
+        <span class="portal-pill">StudyPulse Portal</span>
+        <h1>Welcome Back</h1>
+        <p>Choose your account type and sign in to continue.</p>
+      </div>
+
+      <!-- Role Selector Tabs (Student vs Admin) -->
+      <div class="role-switcher" role="tablist" aria-label="Account Type">
+        <label for="role-student" class="role-tab tab-student">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+          Student
+        </label>
+
+        <label for="role-admin" class="role-tab tab-admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Admin
+        </label>
+      </div>
+
+      <!-- STUDENT LOGIN FORM -->
+      <form action="student-dashboard.html" class="login-form form-student">
+        <div class="form-group">
+          <label for="student-id">Student ID or Academic Email</label>
+          <input
+            type="text"
+            id="student-id"
+            name="student_id"
+            placeholder="e.g. 212500366 or student@studypulse.edu"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="student-pass">Password</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+          <input
+            type="password"
+            id="student-pass"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-signin">
+          Sign In as Student
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </form>
+
+      <!-- ADMIN LOGIN FORM -->
+      <form action="admin.html" class="login-form form-admin">
+        <div class="form-group">
+          <label for="admin-email">Admin Email or Staff ID</label>
+          <input
+            type="text"
+            id="admin-email"
+            name="admin_id"
+            placeholder="e.g. admin@studypulse.edu"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="admin-pass">Admin Password</label>
+            <a href="#" class="forgot-link">Need access help?</a>
+          </div>
+          <input
+            type="password"
+            id="admin-pass"
+            name="admin_password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-signin btn-admin">
+          Sign In to Admin Panel
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="card-footer">
+        <span>Exploring courses first?</span>
+        <a href="course-list.html">Browse Course List</a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
