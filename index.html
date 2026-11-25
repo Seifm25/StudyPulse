@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyPulse — Smart Student Course Details & Academic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVIGATION BAR ==================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <!-- Pure CSS Mobile Toggle Checkbox -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu" />
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Study<span class="text-primary">Pulse</span></span>
+          <span class="brand-tagline">Course Details Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Primary Navigation" class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="course-list.html" class="nav-link">Course List</a>
+        <a href="course-details.html" class="nav-link">Course Details</a>
+        <a href="student-dashboard.html" class="nav-link">Student Dashboard</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+
+      <!-- Right CTA + Pure CSS Mobile Label Button -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-primary btn-nav-login">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+          Login
+        </a>
+
+        <label for="menu-toggle" class="hamburger-btn" aria-label="Open Navigation Menu">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </label>
+      </div>
+
+      <!-- Mobile Dropdown Navigation (Controlled via CSS :checked) -->
+      <div class="mobile-menu">
+        <a href="index.html" class="mobile-link active">Home</a>
+        <a href="course-list.html" class="mobile-link">Course List</a>
+        <a href="course-details.html" class="mobile-link">Course Details</a>
+        <a href="student-dashboard.html" class="mobile-link">Student Dashboard</a>
+        <a href="admin.html" class="mobile-link">Admin</a>
+        <a href="login.html" class="btn btn-primary mobile-login-btn">Login to Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <main id="home">
+    <section class="hero">
+      <div class="hero-glow hero-glow-right"></div>
+      <div class="hero-glow hero-glow-left"></div>
+
+      <div class="container hero-content">
+        <div class="badge">
+          <span class="pulse-dot"></span>
+          Smart Academic &amp; Course Details Hub
+        </div>
+
+        <h1 class="hero-title">
+          Every Student Course Detail, <span class="text-primary">Crystal Clear</span> in One Pulse.
+        </h1>
+
+        <p class="hero-subtitle">
+          Your centralized academic companion to explore full course syllabi, verify prerequisites and credit hours, plan your semester schedule, and manage your academic journey with confidence.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="course-list.html" class="btn btn-primary btn-lg">
+            Explore Course List
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="student-dashboard.html" class="btn btn-outline btn-lg">
+            Go to Student Dashboard
+          </a>
+        </div>
+
+        <!-- Clean Platform Highlights -->
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3>Structured Syllabi</h3>
+            <p>Week-by-week topics &amp; outcomes</p>
+          </div>
+          <div class="highlight-card">
+            <h3 class="text-primary-dark">Credit &amp; Prereq Clarity</h3>
+            <p>Zero guesswork before enrollment</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Unified Portals</h3>
+            <p>Built for students &amp; academic admins</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HOW STUDYPULSE HELPS STUDENTS ==================== -->
+    <section id="features-section" class="section-white">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Why StudyPulse</span>
+          <h2 class="section-title">Designed for Academic Clarity</h2>
+          <p class="section-desc">
+            Everything a student needs to understand course expectations before and during the semester—without scattered files or confusion.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            </div>
+            <h3>Clear Syllabus Breakdown</h3>
+            <p>
+              View organized weekly topics, learning objectives, required textbooks, and lab expectations in a clean, readable format.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4" />
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+              </svg>
+            </div>
+            <h3>Credit &amp; Prerequisite Tracking</h3>
+            <p>
+              Instantly check credit hours, course codes, and required prerequisite subjects so you can plan your study path smoothly.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3>Grade &amp; Schedule Clarity</h3>
+            <p>
+              Know lecture timings, hall locations, and assessment weights—midterms, labs, projects, and finals—all in one place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PLATFORM PORTALS / SYSTEM PAGES OVERVIEW ==================== -->
+    <section id="portals-section" class="section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">System Pages &amp; Portals</span>
+          <h2 class="section-title">Navigate Your StudyPulse Workspace</h2>
+          <p class="section-desc">
+            Jump directly to any section of the platform—whether you are exploring courses, checking syllabus details, or managing records.
+          </p>
+        </div>
+
+        <div class="portals-grid">
+          <a href="course-list.html" class="portal-card">
+            <div>
+              <div class="portal-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="6" x2="21" y2="6" />
+                  <line x1="8" y1="12" x2="21" y2="12" />
+                  <line x1="8" y1="18" x2="21" y2="18" />
+                  <line x1="3" y1="6" x2="3.01" y2="6" />
+                  <line x1="3" y1="12" x2="3.01" y2="12" />
+                  <line x1="3" y1="18" x2="3.01" y2="18" />
+                </svg>
+              </div>
+              <h3>Course List</h3>
+              <p>Browse the full catalog of available subjects, departments, and credit hours.</p>
+            </div>
+            <span class="portal-link">Open Page →</span>
+          </a>
+
+          <a href="course-details.html" class="portal-card">
+            <div>
+              <div class="portal-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <h3>Course Details</h3>
+              <p>Inspect complete syllabus breakdowns, prerequisites, schedules, and grading weights.</p>
+            </div>
+            <span class="portal-link">Open Page →</span>
+          </a>
+
+          <a href="student-dashboard.html" class="portal-card">
+            <div>
+              <div class="portal-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                </svg>
+              </div>
+              <h3>Student Dashboard</h3>
+              <p>Track your enrolled courses, completed credits, and personal semester roadmap.</p>
+            </div>
+            <span class="portal-link">Open Page →</span>
+          </a>
+
+          <a href="admin.html" class="portal-card">
+            <div>
+              <div class="portal-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3>Admin Panel</h3>
+              <p>Add or update course records, manage syllabi, and oversee academic listings.</p>
+            </div>
+            <span class="portal-link">Open Page →</span>
+          </a>
+
+          <a href="login.html" class="portal-card portal-card-highlight">
+            <div>
+              <div class="portal-icon portal-icon-solid">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+              </div>
+              <h3>Account Login</h3>
+              <p>Sign in with your student or administrator credentials to access your workspace.</p>
+            </div>
+            <span class="portal-link">Sign In →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CALL TO ACTION BANNER ==================== -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-glow"></div>
+
+          <div
