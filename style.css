@@ -588,25 +588,25 @@ a {
   overflow: hidden;
   border-radius: 1.5rem;
   padding: 3rem;
-  background: linear-gradient(135deg, var(--slate-900) 0%, var(--slate-900) 55%, var(--sky-950) 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #0F172A 55%, #082F49 100%);
   color: #FFFFFF;
 }
 
 .cta-glow {
   position: absolute;
-  right: -5rem;
-  bottom: -5rem;
-  width: 20rem;
-  height: 20rem;
+  right: -4rem;
+  bottom: -4rem;
+  width: 24rem;
+  height: 24rem;
   border-radius: 9999px;
-  background-color: rgba(14, 165, 233, 0.22);
-  filter: blur(64px);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.28) 0%, rgba(14, 165, 233, 0) 70%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .cta-inner {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -622,8 +622,8 @@ a {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   background-color: rgba(14, 165, 233, 0.2);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  color: var(--sky-300);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #7DD3FC;
   font-size: 0.75rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
@@ -633,11 +633,12 @@ a {
   font-size: 1.875rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .cta-text p {
   font-size: 1rem;
-  color: var(--slate-300);
+  color: #CBD5E1;
   margin-top: 0.625rem;
   line-height: 1.6;
 }
@@ -649,25 +650,25 @@ a {
 }
 
 .btn-cta-primary {
-  background-color: var(--sky-500);
+  background-color: #0EA5E9;
   color: #020617;
   font-weight: 700;
   padding: 0.75rem 1.5rem;
 }
 
 .btn-cta-primary:hover {
-  background-color: var(--sky-400);
+  background-color: #38BDF8;
 }
 
 .btn-cta-secondary {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
   padding: 0.75rem 1.5rem;
 }
 
 .btn-cta-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ==================== FOOTER ==================== */
