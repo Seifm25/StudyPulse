@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>My Schedule</title>
+        <link rel="stylesheet" href="hoda.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <!-- Page card (white box in the middle) -->
+        <!-- Top bar (same on every page) -->
+         <header class="navbar">
+    <div class="container nav-container">
+      <!-- Pure CSS Mobile Toggle Checkbox -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu" />
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Study<span class="text-primary">Pulse</span></span>
+          <span class="brand-tagline">Course Details Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Primary Navigation" class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="course-list.html" class="nav-link">Course List</a>
+        <a href="course-details.html" class="nav-link">Course Details</a>
+        <a href="student-dashboard.html" class="nav-link">Student Dashboard</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+
+      <!-- Right CTA + Pure CSS Mobile Label Button -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-primary btn-nav-login">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+          Login
+        </a>
+
+        <label for="menu-toggle" class="hamburger-btn" aria-label="Open Navigation Menu">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </label>
+      </div>
+
+      <!-- Mobile Dropdown Navigation (Controlled via CSS :checked) -->
+      <div class="mobile-menu">
+        <a href="index.html" class="mobile-link active">Home</a>
+        <a href="course-list.html" class="mobile-link">Course List</a>
+        <a href="course-details.html" class="mobile-link">Course Details</a>
+        <a href="student-dashboard.html" class="mobile-link">Student Dashboard</a>
+        <a href="admin.html" class="mobile-link">Admin</a>
+        <a href="login.html" class="btn btn-primary mobile-login-btn">Login to Portal</a>
+      </div>
+    </div>
+  </header>
+
+        <table class="outer">
+            <tbody><tr>
+                <td class="page">
+
+                    <h2>My Schedule</h2>
+
+                    <!-- Registered Courses -->
+                    <h3>Registered Courses</h3>
+                    <table>
+                        <tbody><tr>
+                            <th>Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Days and Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>MATH201</td>
+                            <td>Discrete Mathematics</td>
+                            <td>3</td>
+                            <td>Mon/Wed 10:30 - 12:00</td>
+                            <td class="good">Registered</td>
+                            <td>
+                                <form action="my-schedule.html" method="get">
+                                    <button type="submit">Drop</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>IS210</td>
+                            <td>Systems Analysis and Design</td>
+                            <td>3</td>
+                            <td>Thu 09:00 - 12:00</td>
+                            <td class="good">Registered</td>
+                            <td>
+                                <form action="my-schedule.html" method="get">
+                                    <button type="submit">Drop</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ENG101</td>
+                            <td>English Writing</td>
+                            <td>2</td>
+                            <td>Wed 13:00 - 15:00</td>
+                            <td class="good">Registered</td>
+                            <td>
+                                <form action="my-schedule.html" method="get">
+                                    <button type="submit">Drop</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CS301</td>
+                            <td>Database Systems</td>
+                            <td>3</td>
+                            <td>Sun/Tue 12:00 - 13:30</td>
+                            <td class="bad">Waitlist (No. 5)</td>
+                            <td>
+                                <form action="my-schedule.html" method="get">
+                                    <button type="submit">Leave Waitlist</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody></table>
+
+                    <!-- Weekly Schedule -->
+                    <h3>Weekly Schedule</h3>
+                    <table class="week">
+                        <tbody><tr>
+                            <th>Time</th>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                        </tr>
+                        <tr>
+                            <td class="label">09:00 - 10:30</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="center" rowspan="2">IS210<br>Systems Analysis<br>09:00 - 12:00</td>
+                        </tr>
+                        <tr>
+                            <td class="label">10:30 - 12:00</td>
+                            <td>-</td>
+                            <td class="center">MATH201<br>Discrete Math</td>
+                            <td>-</td>
+                            <td class="center">MATH201<br>Discrete Math</td>
+                        </tr>
+                        <tr>
+                            <td class="label">12:00 - 13:30</td>
+                            <td class="center">CS301 (waitlist)</td>
+                            <td>-</td>
+                            <td class="center">CS301 (waitlist)</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td class="label">13:00 - 15:00</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="center">ENG101<br>English Writing</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+    <script src="script.js"></script>
+    
+
+</body></html>

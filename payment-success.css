@@ -1,0 +1,51 @@
+/* Extra styles for payment-success.html (load after payment.css) */
+.success { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 1.25rem 3.5rem; }
+
+.receipt {
+  position: relative; background: #fff; border: 1px solid var(--sky-200); border-radius: 1.5rem;
+  padding: 2.2rem 2rem 2rem; box-shadow: 0 28px 55px -22px rgba(14,165,233,.35);
+  animation: rise .7s cubic-bezier(.22,1,.36,1) both;
+}
+.r-top { text-align: center; }
+.r-top h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; margin-top: .9rem; }
+.r-top p { font-size: .86rem; color: var(--slate-500); line-height: 1.55; margin-top: .35rem; }
+.amount { margin-top: 1rem; font-size: 2.3rem; font-weight: 800; letter-spacing: -.03em; color: var(--sky-600); }
+
+/* animated check mark */
+.tick { width: 84px; height: 84px; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.tick-c { stroke: var(--sky-500); stroke-dasharray: 151; stroke-dashoffset: 151; animation: draw .7s ease-out .2s forwards; }
+.tick-p { stroke: var(--sky-600); stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw .45s ease-out .8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.tick { animation: pop .5s cubic-bezier(.34,1.56,.64,1) .1s both; filter: drop-shadow(0 8px 14px rgba(14,165,233,.35)); }
+@keyframes pop { from { transform: scale(.5); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ticket tear line with side notches */
+.tear { position: relative; margin: 1.6rem -2rem; border-top: 2px dashed var(--slate-200); }
+.tear::before, .tear::after {
+  content: ''; position: absolute; top: -14px; width: 26px; height: 26px; border-radius: 50%; background: #E3F1FB;
+}
+.tear::before { left: -14px; box-shadow: inset -1px 0 0 var(--sky-200); }
+.tear::after { right: -14px; box-shadow: inset 1px 0 0 var(--sky-200); }
+
+.r-details { display: flex; flex-direction: column; gap: .7rem; }
+.r-details div { display: flex; justify-content: space-between; font-size: .88rem; }
+.r-details dt { color: var(--slate-500); }
+.r-details dd { font-weight: 700; }
+.r-details .paid { color: #059669; background: #D1FAE5; padding: .1rem .65rem; border-radius: 999px; font-size: .78rem; }
+
+.r-courses { list-style: none; margin: 1.3rem 0; padding: .9rem 1rem; background: var(--sky-50); border: 1px solid var(--sky-200); border-radius: .95rem; display: flex; flex-direction: column; gap: .5rem; font-size: .85rem; font-weight: 600; color: var(--sky-700); }
+.r-courses li { display: flex; align-items: center; gap: .6rem; }
+.r-courses .dot { width: .55rem; height: .55rem; border-radius: 50%; background: linear-gradient(135deg, var(--sky-300), var(--sky-600)); }
+
+.r-actions { display: flex; flex-direction: column; gap: .7rem; }
+.btn-ghost { text-align: center; text-decoration: none; padding: .85rem; border-radius: .95rem; font-size: .88rem; font-weight: 700; color: var(--slate-600); border: 1.5px solid var(--slate-200); transition: all .2s; }
+.btn-ghost:hover { color: var(--sky-700); border-color: var(--sky-300); background: var(--sky-50); }
+
+/* confetti burst */
+.confetti { position: absolute; left: 50%; top: 4.6rem; width: 0; height: 0; z-index: 3; pointer-events: none; }
+.confetti i { position: absolute; width: 8px; height: 14px; border-radius: 2px; background: var(--c); opacity: 0; animation: burst 1.6s cubic-bezier(.15,.8,.3,1) var(--d) both; animation-delay: calc(.9s + var(--d)); }
+@keyframes burst {
+  0% { opacity: 1; transform: translate(0,0) scale(.4) rotate(0); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--x), calc(var(--y) + 120px)) scale(1) rotate(var(--r)); }
+}

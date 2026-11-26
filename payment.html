@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment — StudyPulse Academic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="payment.css" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <a href="index.html" class="brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>
+      </div>
+      <span class="brand-name">Study<span class="accent">Pulse</span></span>
+    </a>
+    <a href="index.html" class="back-link">
+      <svg class="back-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+      Back to Home
+      <span class="home-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2.8 11.4 12 3.6l9.2 7.8" />
+          <path d="M5.2 9.8v10.6h13.6V9.8" />
+          <rect class="room" x="9.4" y="12.6" width="5.2" height="7.8" />
+          <rect class="door" x="9.4" y="12.6" width="5.2" height="7.8" />
+        </svg>
+      </span>
+    </a>
+  </header>
+
+  <!-- Progress steps -->
+  <ol class="steps" aria-label="Checkout progress">
+    <li class="done"><span>✓</span>Courses</li>
+    <li class="active"><span>2</span>Payment</li>
+    <li><span>3</span>Done</li>
+  </ol>
+
+  <main class="checkout">
+
+    <!-- ============ PAYMENT PANEL ============ -->
+    <section class="pay-panel">
+      <input type="radio" name="method" id="m-card" class="method-radio" checked />
+      <input type="radio" name="method" id="m-fawry" class="method-radio" />
+      <input type="radio" name="method" id="m-wallet" class="method-radio" />
+      <input type="radio" name="method" id="m-insta" class="method-radio" />
+
+      <div class="panel-head">
+        <span class="pill">Secure Checkout</span>
+        <h1>Complete your payment</h1>
+        <p>Choose a payment method. Your registration is confirmed as soon as it goes through.</p>
+      </div>
+
+      <div class="methods" role="tablist" aria-label="Payment method">
+        <label for="m-card" class="method t-card"><span class="m-ico">💳</span>Card</label>
+        <label for="m-fawry" class="method t-fawry"><span class="m-ico">🏪</span>Fawry</label>
+        <label for="m-wallet" class="method t-wallet"><span class="m-ico">📱</span>Wallet</label>
+        <label for="m-insta" class="method t-insta"><span class="m-ico">⚡</span>InstaPay</label>
+      </div>
+
+      <!-- CARD -->
+      <form action="payment-success.html" class="method-panel p-card">
+        <div class="flip-scene" aria-hidden="true">
+          <div class="flip">
+            <div class="face front">
+              <div class="card-top">
+                <span class="chip"></span>
+                <span class="card-brand">StudyPulse<b>Pay</b></span>
+              </div>
+              <div class="card-num">•••• •••• •••• ••••</div>
+              <div class="card-bottom">
+                <div><small>Card holder</small>STUDENT NAME</div>
+                <div><small>Expires</small>MM/YY</div>
+              </div>
+            </div>
+            <div class="face back">
+              <div class="strip"></div>
+              <div class="cvv-box"><small>CVV</small><span>•••</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="card-number">Card number</label>
+          <input type="text" id="card-number" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required />
+        </div>
+        <div class="form-group">
+          <label for="card-name">Name on card</label>
+          <input type="text" id="card-name" placeholder="As printed on your card" required />
+        </div>
+        <div class="row-2">
+          <div class="form-group">
+            <label for="card-exp">Expiry</label>
+            <input type="text" id="card-exp" inputmode="numeric" maxlength="5" placeholder="MM/YY" required />
+          </div>
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" inputmode="numeric" maxlength="4" placeholder="•••" required />
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" /> <span>Save this card for next semester</span></label>
+        <button type="submit" class="btn-pay">Pay <span class="pay-amt">EGP 1,620</span> <span class="arrow">→</span></button>
+      </form>
+
+      <!-- FAWRY -->
+      <div class="method-panel p-fawry">
+        <p class="hint">Pay in cash at any Fawry outlet or in the Fawry app.</p>
+        <div class="code-box"><small>Your Fawry code</small><strong>7 4 1 0 5 2 9</strong><em>Valid for 48 hours</em></div>
+        <ol class="how">
+          <li>Open Fawry or visit an outlet</li>
+          <li>Choose “Bill Payment”, then “StudyPulse”</li>
+          <li>Enter the code above and pay <span class="pay-amt">EGP 1,620</span></li>
+        </ol>
+        <a href="payment-success.html" class="btn-pay">I’ve paid with Fawry <span class="arrow">→</span></a>
+      </div>
+
+      <!-- WALLET -->
+      <form action="payment-success.html" class="method-panel p-wallet">
+        <p class="hint">Vodafone Cash, Orange Cash, Etisalat Cash, or any mobile wallet.</p>
+        <div class="form-group">
+          <label for="wallet-phone">Wallet phone number</label>
+          <input type="tel" id="wallet-phone" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX" required />
+        </div>
+        <p class="hint small">A payment request will appear in your wallet app. Approve it to finish.</p>
+        <button type="submit" class="btn-pay">Send payment request <span class="arrow">→</span></button>
+      </form>
+
+      <!-- INSTAPAY -->
+      <form action="payment-success.html" class="method-panel p-insta">
+        <p class="hint">Pay straight from your bank account using your InstaPay address.</p>
+        <div class="form-group">
+          <label for="insta-ipa">InstaPay address (IPA)</label>
+          <input type="text" id="insta-ipa" placeholder="yourname@instapay" required />
+        </div>
+        <p class="hint small">Approve the request in your banking app to confirm.</p>
+        <button type="submit" class="btn-pay">Request payment <span class="arrow">→</span></button>
+      </form>
+
+      <p class="secure-note">🔒 Payments are encrypted. We never store your full card details.</p>
+    </section>
+
+    <!-- ============ ORDER SUMMARY ============ -->
+    <aside class="summary" aria-label="Order summary">
+      <h2>Order summary</h2>
+      <ul class="items" id="cartItems"></ul>
+
+      <input type="checkbox" id="promo-toggle" class="promo-check" />
+      <label for="promo-toggle" class="promo-link">Have a promo code?</label>
+      <div class="promo-box">
+        <input type="text" id="promoInput" placeholder="Enter code" aria-label="Promo code" />
+        <button type="button" id="promoApply">Apply</button>
+      </div>
+      <p class="promo-msg" id="promoMsg"></p>
+
+      <dl class="totals" id="totals"></dl>
+
+      <ul class="trust">
+        <li>✓ Instant confirmation</li>
+        <li>✓ Free changes for 7 days</li>
+      </ul>
+    </aside>
+
+  </main>
+  <script src="cart.js"></script>
+</body>
+</html>

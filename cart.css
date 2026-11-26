@@ -1,0 +1,34 @@
+/* cart.css — extra styles for course-list.html (load after hoda.css and style.css) */
+button.add-btn { min-width: 110px; transition: background-color .2s, color .2s, transform .2s; }
+button.add-btn:not(:disabled):hover { transform: translateY(-2px); }
+button.add-btn.added { background-color: #DDF4E4; color: #1E7B3A; }
+
+body.has-cart { padding-bottom: 5.5rem; }
+
+.checkout-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+  padding: .9rem 1.5rem; font-size: .95rem; font-weight: 600; color: #334155;
+  background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-top: 1px solid #BAE6FD; box-shadow: 0 -10px 30px -12px rgba(14, 165, 233, .35);
+  animation: barUp .4s cubic-bezier(.22, 1, .36, 1);
+}
+.checkout-bar[hidden] { display: none; }
+@keyframes barUp { from { transform: translateY(100%); } }
+
+.btn-checkout {
+  position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: .55rem;
+  padding: .8rem 1.5rem; border-radius: .95rem; text-decoration: none; color: #fff; font-weight: 700;
+  background: linear-gradient(135deg, #0EA5E9, #0284C7);
+  box-shadow: 0 12px 26px -8px rgba(14, 165, 233, .6);
+  transition: transform .2s, box-shadow .2s;
+}
+.btn-checkout::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 45%; left: -60%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+  transform: skewX(-20deg); transition: left .65s ease;
+}
+.btn-checkout:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -8px rgba(14, 165, 233, .7); color: #fff; }
+.btn-checkout:hover::after { left: 120%; }
+.btn-checkout .arrow { transition: transform .25s cubic-bezier(.34, 1.56, .64, 1); }
+.btn-checkout:hover .arrow { transform: translateX(5px); }

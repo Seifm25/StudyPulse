@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Student Dashboard</title>
+        <link rel="stylesheet" href="hoda.css">
+        <link rel="stylesheet" href="style.css"> 
+    </head>
+    <body>
+
+        <!-- Top bar (same on every page) -->
+        <header class="navbar">
+    <div class="container nav-container">
+      <!-- Pure CSS Mobile Toggle Checkbox -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu" />
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Study<span class="text-primary">Pulse</span></span>
+          <span class="brand-tagline">Course Details Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav aria-label="Primary Navigation" class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="course-list.html" class="nav-link">Course List</a>
+        <a href="course-details.html" class="nav-link">Course Details</a>
+        <a href="student-dashboard.html" class="nav-link">Student Dashboard</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+
+      <!-- Right CTA + Pure CSS Mobile Label Button -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-primary btn-nav-login">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+          Login
+        </a>
+
+        <label for="menu-toggle" class="hamburger-btn" aria-label="Open Navigation Menu">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </label>
+      </div>
+
+      <!-- Mobile Dropdown Navigation (Controlled via CSS :checked) -->
+      <div class="mobile-menu">
+        <a href="index.html" class="mobile-link active">Home</a>
+        <a href="course-list.html" class="mobile-link">Course List</a>
+        <a href="course-details.html" class="mobile-link">Course Details</a>
+        <a href="student-dashboard.html" class="mobile-link">Student Dashboard</a>
+        <a href="admin.html" class="mobile-link">Admin</a>
+        <a href="login.html" class="btn btn-primary mobile-login-btn">Login to Portal</a>
+      </div>
+    </div>
+  </header>
+
+        <div class="dash">
+
+            <!-- Left side -->
+            <div class="main">
+
+                <!-- Welcome -->
+                <div class="panel welcome">
+                    <span class="big-icon">🎓</span>
+                    <div>
+                        <h1>Welcome back, <span class="user-name">Student</span>! 💜</h1>
+                        <p>Here's an overview of your course registration.</p>
+                    </div>
+                </div>
+
+                <!-- Credit Hours -->
+                <div class="panel">
+                    <h2>📊 Credit Hours</h2>
+                    <div class="cards">
+                        <div class="box blue"><span>📖</span><b>8 hours</b>Registered Credits</div>
+                        <div class="box purple"><span>🏆</span><b>18 hours</b>Maximum Allowed</div>
+                        <div class="box green"><span>🕒</span><b>10 hours</b>Remaining</div>
+                        <div class="box yellow"><span>✅</span><b>Within the limit</b>Status</div>
+                    </div>
+                </div>
+
+                <!-- Notifications and Status Alerts -->
+                <div class="panel">
+                    <h2>🔔 Notifications and Status Alerts</h2>
+                    <table class="alerts">
+                        <tbody><tr>
+                            <th>Date</th>
+                            <th>Course</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                        </tr>
+                        <tr>
+                            <td>20 Nov 2026</td>
+                            <td>IS210</td>
+                            <td><span class="pill ok">Confirmed</span></td>
+                            <td>Your registration in Systems Analysis and Design was confirmed.</td>
+                        </tr>
+                        <tr>
+                            <td>19 Nov 2026</td>
+                            <td>CS301</td>
+                            <td><span class="pill wait">Waitlisted</span></td>
+                            <td>The course is full. You are number 5 on the waitlist.</td>
+                        </tr>
+                        <tr>
+                            <td>18 Nov 2026</td>
+                            <td>CS230</td>
+                            <td><span class="pill no">Rejected</span></td>
+                            <td>Schedule conflict with MATH201 (Mon/Wed 10:30 - 12:00).</td>
+                        </tr>
+                        <tr>
+                            <td>17 Nov 2026</td>
+                            <td>ENG101</td>
+                            <td><span class="pill ok">Confirmed</span></td>
+                            <td>Your registration in English Writing was confirmed.</td>
+                        </tr>
+                        <tr>
+                            <td>15 Nov 2026</td>
+                            <td>MATH201</td>
+                            <td><span class="pill ok">Confirmed</span></td>
+                            <td>Your registration in Discrete Mathematics was confirmed.</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="side">
+
+                <!-- Quick Actions -->
+                <div class="panel">
+                    <h2>⚡ Quick Actions</h2>
+                    <a class="action main-action" href="course-list.html">+ Register for Courses</a>
+                    <a class="action" href="my-schedule.html">📅 View My Schedule</a>
+                </div>
+
+                <!-- Upcoming Schedule -->
+                <div class="panel">
+                    <h2>📅 Upcoming Schedule</h2>
+                    <div class="item">
+                        <span class="day">Wed<br>25 Nov</span>
+                        <span><b>MATH201</b><br>10:30 AM - 12:00 PM</span>
+                    </div>
+                    <div class="item">
+                        <span class="day">Wed<br>25 Nov</span>
+                        <span><b>ENG101</b><br>1:00 PM - 3:00 PM</span>
+                    </div>
+                    <div class="item">
+                        <span class="day">Thu<br>26 Nov</span>
+                        <span><b>IS210</b><br>9:00 AM - 12:00 PM</span>
+                    </div>
+                </div>
+
+                <!-- Encouragement -->
+                <div class="panel keep">
+                    <b>⭐ Keep going, <span class="user-name">Student</span>!</b>
+                    <p>You're doing great! 💜</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script src="session.js"></script>
+    
+
+</body></html>
