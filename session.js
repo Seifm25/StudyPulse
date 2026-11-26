@@ -1,7 +1,8 @@
-/* session.js — remembers who logged in (localStorage) and shows the name.
+/* session.js — remembers who logged in (localStorage), one name per role.
+   Student name -> student pages only. Admin name -> admin page only.
    Load it on: login.html, student-dashboard.html, admin.html */
 (function () {
-  var KEY = 'sp_user';
+  var KEY = 'sp_users';   // { student: {name, first}, admin: {name, first}, last: 'student' | 'admin' }
 
   /* Known student IDs (same records as the admin page). Add more here. */
   var STUDENTS = {
@@ -11,8 +12,8 @@
     '20240407': 'Mariam Ali'
   };
 
-  function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
-  function save(u) { try { localStorage.setItem(KEY, JSON.stringify(u)); } catch (e) {} }
+  function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function write(u) { try { localStorage.setItem(KEY, JSON.stringify(u)); } catch (e) {} }
 
   /* "ahmed.hassan@x.edu" -> "Ahmed Hassan" */
   function pretty(s) {
@@ -29,28 +30,61 @@
     return pretty(v);
   }
 
-  /* ---- Login page: save the name, then go to the dashboard (no password in the URL) ---- */
+  var file = (location.pathname.split('/').pop() || '').toLowerCase();
+  var isAdminPage = document.body.classList.contains('admin') || file.indexOf('admin') === 0;
+
+  /* ---- Login page: save the name under ITS role, then open that role's page ---- */
   [].forEach.call(document.querySelectorAll('.login-form'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var role = form.classList.contains('form-admin') ? 'admin' : 'student';
+      var role = (form.classList.contains('form-admin') || form.querySelector('#admin-email')) ? 'admin' : 'student';
       var name = nameFrom(form.querySelector('input[type="text"]').value, role);
       var first = /^(Student|Staff) /.test(name) ? name : name.split(' ')[0];
-      save({ role: role, name: name, first: first });
-      location.href = form.getAttribute('action');
+
+      var users = read();
+      users[role] = { name: name, first: first };
+      users.last = role;
+      write(users);
+      try { localStorage.removeItem('sp_user'); } catch (err) {}   // old single-name key
+
+      var action = form.getAttribute('action') || '';
+      location.href = role === 'admin'
+        ? (action.indexOf('admin') > -1 ? action : 'admin.html')
+        : (action.indexOf('student') > -1 ? action : 'student-dashboard.html');
     });
   });
 
-  /* ---- Dashboards: replace every .user-name with the saved name ---- */
-  var user = load();
-  if (user) {
+  /* ---- Dashboards: each page only uses ITS role's name ---- */
+  var who = read()[isAdminPage ? 'admin' : 'student'];
+  if (who) {
     [].forEach.call(document.querySelectorAll('.user-name'), function (el) {
-      el.textContent = el.hasAttribute('data-full') ? user.name : user.first;
+      el.textContent = el.hasAttribute('data-full') ? who.name : who.first;
     });
+
+    /* Admin page: no HTML edits needed, the name is swapped automatically */
+    if (isAdminPage) {
+      var tu = document.querySelector('.topbar .user');
+      if (tu) {
+        [].slice.call(tu.childNodes).forEach(function (n) { if (n.nodeType === 3) tu.removeChild(n); });
+        tu.appendChild(document.createTextNode(who.name));
+      }
+      var h = document.querySelector('.sidebar h3');
+      if (h) {
+        h.textContent = '';
+        h.appendChild(document.createTextNode('Welcome,'));
+        h.appendChild(document.createElement('br'));
+        h.appendChild(document.createTextNode(who.first + '!'));
+      }
+    }
   }
 
-  /* ---- Logout link (admin sidebar) clears the saved name ---- */
+  /* ---- Logout link (admin sidebar) clears the ADMIN name only ---- */
   [].forEach.call(document.querySelectorAll('.sidebar a[href="login.html"]'), function (a) {
-    a.addEventListener('click', function () { try { localStorage.removeItem(KEY); } catch (e) {} });
+    a.addEventListener('click', function () {
+      var users = read();
+      delete users.admin;
+      if (users.last === 'admin') delete users.last;
+      write(users);
+    });
   });
 })();
