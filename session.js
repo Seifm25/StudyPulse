@@ -2,15 +2,11 @@
    Student name -> student pages only. Admin name -> admin page only.
    Load it on: login.html, student-dashboard.html, admin.html */
 (function () {
-  var KEY = 'sp_users';   // { student: {name, first}, admin: {name, first}, last: 'student' | 'admin' }
+  var KEY = 'sp_users';
 
-  /* Known student IDs (same records as the admin page). Add more here. */
-  var STUDENTS = {
-    '20240123': 'Ahmed Hassan',
-    '20240211': 'Sara Mahmoud',
-    '20240318': 'Omar Khaled',
-    '20240407': 'Mariam Ali'
-  };
+  /* Password for the Admin tab (change it!). It is visible in this file, so it is only a demo gate. */
+  var ADMIN_PASSWORD = 'admin123';
+   // { student: {name, first}, admin: {name, first}, last: 'student' | 'admin' }
 
   function read() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
   function write(u) { try { localStorage.setItem(KEY, JSON.stringify(u)); } catch (e) {} }
@@ -22,12 +18,10 @@
     }).join(' ');
   }
 
-  function nameFrom(value, role) {
+  /* Shows exactly what was typed (ID or name). Only an email is turned into a readable name. */
+  function nameFrom(value) {
     var v = value.trim();
-    if (v.indexOf('@') > 0) return pretty(v.split('@')[0]);
-    if (STUDENTS[v]) return STUDENTS[v];
-    if (/^\d+$/.test(v)) return (role === 'admin' ? 'Staff ' : 'Student ') + v;
-    return pretty(v);
+    return v.indexOf('@') > 0 ? pretty(v.split('@')[0]) : v;
   }
 
   var file = (location.pathname.split('/').pop() || '').toLowerCase();
@@ -38,8 +32,21 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var role = (form.classList.contains('form-admin') || form.querySelector('#admin-email')) ? 'admin' : 'student';
-      var name = nameFrom(form.querySelector('input[type="text"]').value, role);
-      var first = /^(Student|Staff) /.test(name) ? name : name.split(' ')[0];
+      if (role === 'admin') {
+        var pass = form.querySelector('input[type="password"]').value;
+        var err = form.querySelector('.login-error');
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'login-error';
+          err.style.cssText = 'color:#C0201F;font-size:.8rem;font-weight:600;';
+          form.insertBefore(err, form.querySelector('button[type="submit"]'));
+        }
+        if (pass !== ADMIN_PASSWORD) { err.textContent = 'Wrong admin password.'; return; }
+        err.textContent = '';
+      }
+      var typed = form.querySelector('input[type="text"]').value;
+      var name = nameFrom(typed);
+      var first = typed.indexOf('@') > 0 ? name.split(' ')[0] : name;
 
       var users = read();
       users[role] = { name: name, first: first };
@@ -76,6 +83,13 @@
         h.appendChild(document.createTextNode(who.first + '!'));
       }
     }
+  }
+
+  /* ---- Hide the Admin links from everyone who is not logged in as admin ---- */
+  if (!read().admin) {
+    [].forEach.call(document.querySelectorAll('a[href^="admin"]'), function (a) {
+      if (!a.classList.contains('go-btn')) a.style.display = 'none';
+    });
   }
 
   /* ---- Logout link (admin sidebar) clears the ADMIN name only ---- */
